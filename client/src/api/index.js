@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+let baseURL = import.meta.env.VITE_API_URL || '/api';
+// If user provided a backend URL like https://backend.onrender.com, append /api
+if (baseURL !== '/api' && !baseURL.endsWith('/api')) {
+  // Remove trailing slash if present, then add /api
+  baseURL = baseURL.replace(/\/$/, '') + '/api';
+}
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL,
   headers: { 'Content-Type': 'application/json' },
 });
 
