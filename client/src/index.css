@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+/* ================================================
+   SplitSmooth — Design System
+   Premium dark fintech with glassmorphism
+   ================================================ */
+
+/* Custom Theme Variables */
+@theme {
+  --color-dark-950: #030712;
+  --color-dark-900: #0a0f1a;
+  --color-dark-800: #111827;
+  --color-dark-700: #1f2937;
+  --color-dark-600: #374151;
+  --color-dark-500: #4b5563;
+  --color-dark-400: #6b7280;
+  --color-dark-300: #9ca3af;
+
+  --color-accent: #10b981;
+  --color-accent-light: #34d399;
+  --color-accent-dark: #059669;
+
+  --color-debt: #ef4444;
+  --color-debt-light: #f87171;
+  --color-debt-dark: #dc2626;
+
+  --color-glass: rgba(17, 24, 39, 0.6);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-hover: rgba(31, 41, 55, 0.8);
+}
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--color-dark-900);
+  color: #f9fafb;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-dark-600);
+  border-radius: 999px;
+}
+
+/* Glass Card Utility */
+.glass {
+  background: var(--color-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 1rem;
+}
+
+.glass-subtle {
+  background: rgba(17, 24, 39, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+}
+
+/* Gradient backgrounds */
+.gradient-emerald { background: linear-gradient(135deg, #10b981, #06b6d4); }
+.gradient-violet { background: linear-gradient(135deg, #8b5cf6, #a855f7); }
+.gradient-orange { background: linear-gradient(135deg, #f97316, #ec4899); }
+.gradient-blue { background: linear-gradient(135deg, #3b82f6, #6366f1); }
+.gradient-rose { background: linear-gradient(135deg, #f43f5e, #ef4444); }
+.gradient-teal { background: linear-gradient(135deg, #14b8a6, #10b981); }
+.gradient-amber { background: linear-gradient(135deg, #f59e0b, #f97316); }
+.gradient-fuchsia { background: linear-gradient(135deg, #d946ef, #ec4899); }
+
+/* Balance colors */
+.text-credit { color: var(--color-accent); }
+.text-debt { color: var(--color-debt); }
+.bg-credit { background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.1)); }
+.bg-debt { background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.1)); }
+
+/* Input styling */
+input, select, textarea {
+  background: var(--color-dark-700);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 0.75rem;
+  color: #f9fafb;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+input::placeholder, textarea::placeholder {
+  color: var(--color-dark-400);
+}
+
+/* Button base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  touch-action: manipulation;
+  min-height: 48px;
+  user-select: none;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+  color: white;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+.btn-primary:hover {
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.btn-secondary {
+  background: var(--color-dark-700);
+  color: var(--color-dark-300);
+  border: 1px solid var(--color-glass-border);
+}
+.btn-secondary:hover {
+  background: var(--color-dark-600);
+  color: #f9fafb;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, var(--color-debt), var(--color-debt-dark));
+  color: white;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-dark-300);
+  padding: 0.5rem;
+}
+.btn-ghost:hover {
+  color: #f9fafb;
+  background: var(--color-dark-700);
+}
+
+/* Safe area for mobile bottom nav */
+.pb-safe {
+  padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, var(--color-dark-700) 25%, var(--color-dark-600) 50%, var(--color-dark-700) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
