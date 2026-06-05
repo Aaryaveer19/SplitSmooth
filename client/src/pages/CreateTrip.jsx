@@ -55,7 +55,7 @@ export default function CreateTrip() {
   return (
     <div className="flex flex-col min-h-screen pb-safe">
       <PageHeader title="Create Trip" subtitle="Plan a new adventure" backTo="/" />
-      <main className="flex-1 px-4 pb-32">
+      <main className="flex-1 px-4 pb-24">
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-5">
           <motion.div className={`h-36 rounded-2xl ${sel?.cls || 'gradient-emerald'} flex items-end p-5 relative overflow-hidden`} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} key={gradient}>
             <div className="absolute inset-0 bg-black/10" />
@@ -114,16 +114,14 @@ export default function CreateTrip() {
           </div>
 
           {error && <p className="text-red-400 text-sm">{error}</p>}
+
+          <div className="pt-4 pb-8">
+            <button type="submit" disabled={submitting} className="btn btn-primary w-full text-base" id="submit-trip">
+              {submitting ? 'Creating...' : <><Sparkles size={18} /> Create Trip</>}
+            </button>
+          </div>
         </form>
       </main>
-
-      <div className="fixed bottom-20 left-0 right-0 px-4 z-30">
-        <div className="max-w-lg mx-auto">
-          <button onClick={handleSubmit} disabled={submitting} className="btn btn-primary w-full text-base" id="submit-trip">
-            {submitting ? 'Creating...' : <><Sparkles size={18} /> Create Trip</>}
-          </button>
-        </div>
-      </div>
     </div>
   );
 }

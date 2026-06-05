@@ -88,7 +88,7 @@ export default function AddEvent() {
   return (
     <div className="flex flex-col min-h-screen pb-safe">
       <PageHeader title="Add Event" subtitle={`Trip #${tripId}`} backTo={`/trips/${tripId}`} />
-      <main className="flex-1 px-4 pb-36">
+      <main className="flex-1 px-4 pb-24">
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-5">
           {/* Event Name */}
           <div>
@@ -168,17 +168,14 @@ export default function AddEvent() {
           </div>
 
           {error && <p className="text-red-400 text-sm">{error}</p>}
+
+          <div className="pt-4 pb-8">
+            <button type="submit" disabled={submitting} className="btn btn-primary w-full text-base" id="submit-event">
+              {submitting ? 'Saving...' : 'Save Event'}
+            </button>
+          </div>
         </form>
       </main>
-
-      {/* Sticky Submit */}
-      <div className="fixed bottom-20 left-0 right-0 px-4 z-30">
-        <div className="max-w-lg mx-auto">
-          <button onClick={handleSubmit} disabled={submitting} className="btn btn-primary w-full text-base" id="submit-event">
-            {submitting ? 'Saving...' : 'Save Event'}
-          </button>
-        </div>
-      </div>
     </div>
   );
 }
