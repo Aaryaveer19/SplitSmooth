@@ -55,56 +55,63 @@ export default function CreateTrip() {
   return (
     <div className="flex flex-col min-h-screen pb-safe">
       <PageHeader title="Create Trip" subtitle="Plan a new adventure" backTo="/" />
-      <main className="flex-1 px-4 pb-24">
-        <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-5">
-          <motion.div className={`h-36 rounded-2xl ${sel?.cls || 'gradient-emerald'} flex items-end p-5 relative overflow-hidden`} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} key={gradient}>
+      <main className="flex-1 px-5 pb-28">
+        <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
+
+          {/* Cover Preview */}
+          <motion.div className={`h-40 rounded-2xl ${sel?.cls || 'gradient-emerald'} flex items-end p-6 relative overflow-hidden`} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} key={gradient}>
             <div className="absolute inset-0 bg-black/10" />
             <div className="relative">
               <h2 className="text-xl font-bold text-white">{name || 'Your Trip Name'}</h2>
-              <p className="text-sm text-white/60 mt-0.5">{description || 'Where will you go?'}</p>
+              <p className="text-sm text-white/60 mt-1">{description || 'Where will you go?'}</p>
             </div>
           </motion.div>
 
-          <div>
-            <label className="text-sm font-medium text-gray-400 mb-2 block">Cover Color</label>
-            <div className="flex gap-2 flex-wrap">
+          {/* Cover Color */}
+          <div className="mt-6 mb-6">
+            <label className="text-sm font-medium text-gray-400 mb-3 block">Cover Color</label>
+            <div className="flex gap-3 flex-wrap">
               {GRADIENTS.map(g => (
-                <button key={g.key} type="button" onClick={() => setGradient(g.key)} className={`w-10 h-10 rounded-xl ${g.cls} transition-all ${gradient === g.key ? 'ring-2 ring-white ring-offset-2 ring-offset-dark-900 scale-110' : 'opacity-60 hover:opacity-100'}`} />
+                <button key={g.key} type="button" onClick={() => setGradient(g.key)} className={`w-11 h-11 rounded-xl ${g.cls} transition-all ${gradient === g.key ? 'ring-2 ring-white ring-offset-2 ring-offset-dark-900 scale-110' : 'opacity-60 hover:opacity-100'}`} />
               ))}
             </div>
           </div>
 
-          <div>
-            <label className="text-sm font-medium text-gray-400 mb-2 block">Trip Name *</label>
+          {/* Trip Name */}
+          <div className="mb-6">
+            <label className="text-sm font-medium text-gray-400 mb-3 block">Trip Name *</label>
             <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Pilla Villa Trip" id="trip-name" autoFocus />
           </div>
 
-          <div>
-            <label className="text-sm font-medium text-gray-400 mb-2 block">Description</label>
+          {/* Description */}
+          <div className="mb-6">
+            <label className="text-sm font-medium text-gray-400 mb-3 block">Description</label>
             <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Weekend getaway..." rows={2} id="trip-description" />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          {/* Dates */}
+          <div className="grid grid-cols-2 gap-4 mb-8">
             <div>
-              <label className="text-sm font-medium text-gray-400 mb-2 block">Start Date</label>
+              <label className="text-sm font-medium text-gray-400 mb-3 block">Start Date</label>
               <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-400 mb-2 block">End Date</label>
+              <label className="text-sm font-medium text-gray-400 mb-3 block">End Date</label>
               <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
             </div>
           </div>
 
-          <div>
-            <label className="text-sm font-medium text-gray-400 mb-2 flex items-center gap-2"><UserPlus size={14} /> Members ({members.length})</label>
-            <div className="flex gap-2">
+          {/* Members */}
+          <div className="mb-8">
+            <label className="text-sm font-medium text-gray-400 mb-3 flex items-center gap-2"><UserPlus size={14} /> Members ({members.length})</label>
+            <div className="flex gap-3">
               <input type="text" value={memberInput} onChange={e => setMemberInput(e.target.value)} onKeyDown={handleKey} placeholder="Enter member name" className="flex-1" id="member-input" />
               <button type="button" onClick={addMember} className="btn btn-secondary px-4"><Plus size={18} /></button>
             </div>
             {members.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-3">
+              <div className="flex flex-wrap gap-3 mt-4">
                 {members.map(m => (
-                  <span key={m} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-dark-700 text-sm text-gray-300 border border-white/5">
+                  <span key={m} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dark-700 text-sm text-gray-300 border border-white/5">
                     {m}
                     <button type="button" onClick={() => setMembers(p => p.filter(x => x !== m))} className="text-gray-500 hover:text-red-400"><X size={14} /></button>
                   </span>
@@ -113,7 +120,7 @@ export default function CreateTrip() {
             )}
           </div>
 
-          {error && <p className="text-red-400 text-sm">{error}</p>}
+          {error && <p className="text-red-400 text-sm mb-6">{error}</p>}
 
           <div className="pt-4 pb-8">
             <button type="submit" disabled={submitting} className="btn btn-primary w-full text-base" id="submit-trip">

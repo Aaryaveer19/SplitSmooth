@@ -27,17 +27,18 @@ export default function Settlements() {
   return (
     <div className="flex flex-col min-h-screen pb-safe">
       <PageHeader title="Settlements" subtitle="Optimized transactions" backTo={`/trips/${id}`} />
-      <main className="flex-1 px-4 pb-8">
-        <div className="max-w-lg mx-auto space-y-4">
+      <main className="flex-1 px-5 pb-10">
+        <div className="max-w-lg mx-auto">
+
           {/* Summary Card */}
-          <motion.div className="glass p-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-xl gradient-violet flex items-center justify-center">
-                <ArrowLeftRight size={20} className="text-white" />
+          <motion.div className="glass p-5" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl gradient-violet flex items-center justify-center">
+                <ArrowLeftRight size={22} className="text-white" />
               </div>
               <div>
                 <p className="text-sm text-gray-400">Transactions Needed</p>
-                <div className="flex items-baseline gap-2">
+                <div className="flex items-baseline gap-3 mt-1">
                   <span className="text-2xl font-bold">{data?.total_transactions || 0}</span>
                   <span className="text-sm text-gray-500">totaling {formatCurrency(data?.total_amount || 0)}</span>
                 </div>
@@ -45,65 +46,56 @@ export default function Settlements() {
             </div>
           </motion.div>
 
-          {settlements.length === 0 ? (
-            <EmptyState
-              icon={CheckCircle}
-              title="All settled!"
-              message="No payments needed. Everyone is squared up."
-            />
-          ) : (
-            settlements.map((s, i) => (
-              <motion.div
-                key={i}
-                className="glass p-4"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
-              >
-                <div className="flex items-center gap-3">
-                  {/* From */}
-                  <div className="flex flex-col items-center min-w-[60px]">
-                    <div className="w-11 h-11 rounded-full flex items-center justify-center text-sm font-semibold text-white" style={{ backgroundColor: getAvatarColor(s.from_name) }}>
-                      {getInitials(s.from_name)}
+          {/* Settlement Cards */}
+          <div className="space-y-4 mt-6">
+            {settlements.length === 0 ? (
+              <EmptyState icon={CheckCircle} title="All settled!" message="No payments needed. Everyone is squared up." />
+            ) : (
+              settlements.map((s, i) => (
+                <motion.div
+                  key={i}
+                  className="glass p-6"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.08 }}
+                >
+                  <div className="flex items-center gap-4">
+                    {/* From */}
+                    <div className="flex flex-col items-center min-w-[64px]">
+                      <div className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-semibold text-white" style={{ backgroundColor: getAvatarColor(s.from_name) }}>
+                        {getInitials(s.from_name)}
+                      </div>
+                      <span className="text-xs text-gray-400 mt-2 truncate max-w-[64px]">{s.from_name}</span>
                     </div>
-                    <span className="text-xs text-gray-400 mt-1 truncate max-w-[60px]">{s.from_name}</span>
-                  </div>
 
-                  {/* Arrow & Amount */}
-                  <div className="flex-1 flex flex-col items-center">
-                    <div className="flex items-center gap-2 w-full">
-                      <div className="flex-1 h-px bg-gradient-to-r from-red-500/50 to-emerald-500/50" />
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: i * 0.08 + 0.3, type: 'spring' }}
-                      >
-                        <ArrowRight size={16} className="text-gray-400" />
-                      </motion.div>
-                      <div className="flex-1 h-px bg-gradient-to-r from-emerald-500/50 to-emerald-500/20" />
+                    {/* Arrow & Amount */}
+                    <div className="flex-1 flex flex-col items-center py-2">
+                      <div className="flex items-center gap-2 w-full">
+                        <div className="flex-1 h-px bg-gradient-to-r from-red-500/50 to-emerald-500/50" />
+                        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: i * 0.08 + 0.3, type: 'spring' }}>
+                          <ArrowRight size={16} className="text-gray-400" />
+                        </motion.div>
+                        <div className="flex-1 h-px bg-gradient-to-r from-emerald-500/50 to-emerald-500/20" />
+                      </div>
+                      <motion.p className="text-xl font-bold text-white mt-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.08 + 0.4 }}>
+                        {formatCurrency(s.amount)}
+                      </motion.p>
+                      <p className="text-[11px] text-gray-500 mt-1">pays</p>
                     </div>
-                    <motion.p
-                      className="text-lg font-bold text-white mt-1"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: i * 0.08 + 0.4 }}
-                    >
-                      {formatCurrency(s.amount)}
-                    </motion.p>
-                    <p className="text-[10px] text-gray-500">pays</p>
-                  </div>
 
-                  {/* To */}
-                  <div className="flex flex-col items-center min-w-[60px]">
-                    <div className="w-11 h-11 rounded-full flex items-center justify-center text-sm font-semibold text-white" style={{ backgroundColor: getAvatarColor(s.to_name) }}>
-                      {getInitials(s.to_name)}
+                    {/* To */}
+                    <div className="flex flex-col items-center min-w-[64px]">
+                      <div className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-semibold text-white" style={{ backgroundColor: getAvatarColor(s.to_name) }}>
+                        {getInitials(s.to_name)}
+                      </div>
+                      <span className="text-xs text-gray-400 mt-2 truncate max-w-[64px]">{s.to_name}</span>
                     </div>
-                    <span className="text-xs text-gray-400 mt-1 truncate max-w-[60px]">{s.to_name}</span>
                   </div>
-                </div>
-              </motion.div>
-            ))
-          )}
+                </motion.div>
+              ))
+            )}
+          </div>
+
         </div>
       </main>
     </div>

@@ -5,16 +5,16 @@ export default function MemberBadge({ name, size = 'md', selected, onClick, show
   const color = getAvatarColor(name);
 
   const sizes = {
-    sm: 'w-8 h-8 text-xs',
-    md: 'w-10 h-10 text-sm',
-    lg: 'w-12 h-12 text-base',
+    sm: 'w-9 h-9 text-xs',
+    md: 'w-11 h-11 text-sm',
+    lg: 'w-14 h-14 text-base',
   };
 
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`flex flex-col items-center gap-1 transition-all ${
+      className={`flex flex-col items-center gap-2 transition-all ${
         onClick ? 'cursor-pointer' : 'cursor-default'
       } ${selected === false ? 'opacity-40' : ''}`}
     >
@@ -26,7 +26,7 @@ export default function MemberBadge({ name, size = 'md', selected, onClick, show
         {initials}
       </div>
       {showName && (
-        <span className="text-[11px] text-gray-400 max-w-[56px] truncate">
+        <span className="text-[11px] text-gray-400 max-w-[64px] truncate leading-tight">
           {name}
         </span>
       )}

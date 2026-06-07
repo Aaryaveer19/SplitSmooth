@@ -26,17 +26,17 @@ export default function BottomNav({ tripId }) {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
       <div className="glass mx-auto max-w-lg border-t border-white/5" style={{ borderRadius: '1.25rem 1.25rem 0 0' }}>
-        <div className="flex items-center justify-around px-2 py-1">
+        <div className="flex items-center justify-around px-3 py-2">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               end={item.end}
-              className="flex flex-col items-center py-2 px-3 min-w-[60px]"
+              className="flex flex-col items-center py-2 px-4 min-w-[64px]"
             >
               {({ isActive }) => (
                 <motion.div
-                  className="flex flex-col items-center gap-1"
+                  className="flex flex-col items-center gap-1.5"
                   whileTap={{ scale: 0.9 }}
                 >
                   <div
