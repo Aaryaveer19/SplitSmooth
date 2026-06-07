@@ -7,6 +7,8 @@ import TripDetails from './pages/TripDetails';
 import AddEvent from './pages/AddEvent';
 import Balances from './pages/Balances';
 import Settlements from './pages/Settlements';
+import MemberAnalytics from './pages/MemberAnalytics';
+import EventDetail from './pages/EventDetail';
 
 function AppRoutes() {
   const location = useLocation();
@@ -21,6 +23,8 @@ function AppRoutes() {
           <Route path="/trips/:id/add-event" element={<AddEvent />} />
           <Route path="/trips/:id/balances" element={<Balances />} />
           <Route path="/trips/:id/settlements" element={<Settlements />} />
+          <Route path="/trips/:tripId/members/:memberId" element={<MemberAnalytics />} />
+          <Route path="/trips/:tripId/events/:eventId" element={<EventDetail />} />
         </Routes>
       </AnimatePresence>
       <BottomNav />

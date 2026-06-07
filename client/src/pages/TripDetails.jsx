@@ -121,7 +121,14 @@ export default function TripDetails() {
             {/* Horizontally scrollable member row */}
             <div className="overflow-x-auto -mx-5 px-5">
               <div className="flex gap-5 pb-2" style={{ minWidth: 'min-content' }}>
-                {members.map(m => <MemberBadge key={m.id} name={m.name} size="md" />)}
+                {members.map(m => (
+                  <MemberBadge
+                    key={m.id}
+                    name={m.name}
+                    size="md"
+                    onClick={() => navigate(`/trips/${id}/members/${m.id}`)}
+                  />
+                ))}
               </div>
             </div>
           </section>
@@ -135,7 +142,10 @@ export default function TripDetails() {
               <div className="space-y-4">
                 {events.map((evt, i) => (
                   <motion.div key={evt.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
-                    <div className="glass p-5">
+                    <div
+                      className="glass p-5 cursor-pointer active:scale-[0.98] transition-transform"
+                      onClick={() => navigate(`/trips/${id}/events/${evt.id}`)}
+                    >
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 rounded-xl gradient-emerald flex items-center justify-center flex-shrink-0">
                           <Receipt size={20} className="text-white" />
@@ -144,7 +154,10 @@ export default function TripDetails() {
                           <h4 className="font-semibold text-[15px] truncate">{evt.name}</h4>
                           <p className="text-xs text-gray-500 mt-1">{evt.payer_count} payer(s) · {evt.participant_count} participant(s)</p>
                         </div>
-                        <button onClick={() => handleDeleteEvent(evt.id)} className="btn-ghost p-2 rounded-lg flex-shrink-0 -mt-1">
+                        <button
+                          onClick={e => { e.stopPropagation(); handleDeleteEvent(evt.id); }}
+                          className="btn-ghost p-2 rounded-lg flex-shrink-0 -mt-1"
+                        >
                           <Trash2 size={15} className="text-gray-500 hover:text-red-400" />
                         </button>
                       </div>

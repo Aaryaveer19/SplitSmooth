@@ -22,6 +22,7 @@ export const deleteTrip = (id) => api.delete(`/trips/${id}`).then((r) => r.data)
 export const getMembers = (tripId) => api.get(`/trips/${tripId}/members`).then((r) => r.data);
 export const addMembers = (tripId, names) => api.post(`/trips/${tripId}/members`, { names }).then((r) => r.data);
 export const deleteMember = (id) => api.delete(`/members/${id}`).then((r) => r.data);
+export const getMemberAnalytics = (memberId) => api.get(`/members/${memberId}/analytics`).then((r) => r.data);
 
 // ── Events ─────────────────────────────────────
 export const getEvents = (tripId) => api.get(`/trips/${tripId}/events`).then((r) => r.data);

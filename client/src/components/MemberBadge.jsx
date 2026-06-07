@@ -15,7 +15,7 @@ export default function MemberBadge({ name, size = 'md', selected, onClick, show
       type="button"
       onClick={onClick}
       className={`flex flex-col items-center gap-2 transition-all ${
-        onClick ? 'cursor-pointer' : 'cursor-default'
+        onClick ? 'cursor-pointer active:scale-90' : 'cursor-default'
       } ${selected === false ? 'opacity-40' : ''}`}
     >
       <div
